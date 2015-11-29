@@ -25,7 +25,7 @@ import de.fhpotsdam.unfolding.marker.Marker;
 public class LifeExpectancy extends PApplet {
 
 	UnfoldingMap map;
-	HashMap<String, Float> lifeExpMap;
+	HashMap<String,Float> lifeExpMap;
 	List<Feature> countries;
 	List<Marker> countryMarkers;
 

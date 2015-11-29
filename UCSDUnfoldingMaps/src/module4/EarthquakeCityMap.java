@@ -147,11 +147,16 @@ public class EarthquakeCityMap extends PApplet {
 		ellipse(50, 175, 10, 10);
 		fill(color(0, 0, 255));
 		ellipse(50, 225, 5, 5);
+		fill(color(0, 0, 255));
+		ellipse(50, 275, 15, 15);
+		line(42,283,58,267);
+		line(42,267,58,283);
 		
 		fill(0, 0, 0);
 		text("5.0+ Magnitude", 75, 125);
 		text("4.0+ Magnitude", 75, 175);
 		text("Below 4.0", 75, 225);
+		text("Last Day", 75,275);
 	}
 
 	
@@ -165,6 +170,12 @@ public class EarthquakeCityMap extends PApplet {
 		// IMPLEMENT THIS: loop over all countries to check if location is in any of them
 		
 		// TODO: Implement this method using the helper method isInCountry
+		for(Marker country : countryMarkers){
+			if(isInCountry(earthquake, country)){
+			return true;
+			}
+		}
+		
 		
 		// not inside any country
 		return false;
@@ -179,6 +190,28 @@ public class EarthquakeCityMap extends PApplet {
 	private void printQuakes() 
 	{
 		// TODO: Implement this method
+		for(Marker country : countryMarkers){
+			int count=0;
+			for(Marker earthMarker : quakeMarkers ){
+				if(earthMarker instanceof LandQuakeMarker){
+					if(earthMarker.getProperty("country").toString().equals(country.getProperty("name").toString())){
+						count++;
+					}
+				}
+				
+			}
+			if(count>0)
+			System.out.println(country.getProperty("name")+"  :  "+count);
+
+		}
+		int oceanCount=0;
+		for(Marker earthMarker : quakeMarkers ){ //count oceanquakes
+			if(earthMarker instanceof OceanQuakeMarker){
+				oceanCount++;
+			}
+		}
+		System.out.println("OCEAN QUAKES: "+oceanCount);
+		
 	}
 	
 	
